@@ -77,9 +77,9 @@ class CoquiTTS(tts.TTS):
         # model_storage_path = os.getenv['MODEL_STORAGE_PATH']
 
         config = XttsConfig()
-        model_path = "/Users/user/Library/Application Support/tts/tts_models--multilingual--multi-dataset--xtts_v2/model.pth"
-        config_path = "/Users/user/Library/Application Support/tts_models--multilingual--multi-dataset--xtts_v2/config.json"
-        vocab_path = "/Users/user/Library/Application Support/tts_models--multilingual--multi-dataset--xtts_v2/vocab.json"
+        model_path = "/Users/disal2/Library/Application Support/tts/tts_models--multilingual--multi-dataset--xtts_v2/model.pth"
+        config_path = "/Users/disal2/Library/Application Support/tts_models--multilingual--multi-dataset--xtts_v2/config.json"
+        vocab_path = "/Users/disal2/Library/Application Support/tts_models--multilingual--multi-dataset--xtts_v2/vocab.json"
         config.load_json(config_path)
 
         self._model: Xtts = Xtts.init_from_config(config)
