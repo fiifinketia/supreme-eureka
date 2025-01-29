@@ -172,7 +172,7 @@ class ChunkedStream(tts.ChunkedStream):
                 speaker_embedding,
                 enable_text_splitting=True
             )):
-                for frame in bstream.write(chunk.numpy().tobytes()):
+                for frame in bstream.write(chunk.cpu().numpy().tobytes()):
                     self._event_ch.send_nowait(
                         tts.SynthesizedAudio(
                             request_id=request_id,
@@ -239,7 +239,7 @@ class SynthesizeStream(tts.SynthesizeStream):
                     speaker_embedding,
                     enable_text_splitting=True
                 ):
-                    for frame in bstream.write(chunk.numpy().tobytes()):
+                    for frame in bstream.write(chunk.cpu().numpy().tobytes()):
                         _send_last_frame(segment_id=segment_id, is_final=False)
                         last_frame = frame
 
