@@ -162,7 +162,9 @@ class ChunkedStream(tts.ChunkedStream):
         )
 
         try:
-            gpt_cond_latent, speaker_embedding = self._model.get_conditioning_latents(audio_path=["/Users/bytlabs/911/audio.mp3"])
+            gpt_cond_latent, speaker_embedding = self._model.get_conditioning_latents(
+                audio_path=["audio.mp3"]
+            )
             for i,chunk in enumerate(self._model.inference_stream(
                 self._input_text,
                 self.language,
