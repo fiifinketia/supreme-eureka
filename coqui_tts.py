@@ -245,7 +245,7 @@ class SynthesizeStream(tts.SynthesizeStream):
             _send_last_frame(segment_id=segment_id, is_final=True)
 
         except Exception as e:
-            raise APIConnectionError() from e
+            raise Exception(e) from e
         finally:
             await utils.aio.gracefully_cancel(input_task)
 
