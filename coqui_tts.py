@@ -74,10 +74,12 @@ class CoquiTTS(tts.TTS):
             sample_rate=16000
         )
 
+        # model_storage_path = os.getenv['MODEL_STORAGE_PATH']
+
         config = XttsConfig()
-        model_path = "/Users/bytlabs/Library/Application Support/tts/tts_models--multilingual--multi-dataset--xtts_v2/model.pth"
-        config_path = "/Users/bytlabs/Library/Application Support/tts/tts_models--multilingual--multi-dataset--xtts_v2/config.json"
-        vocab_path = "/Users/bytlabs/Library/Application Support/tts/tts_models--multilingual--multi-dataset--xtts_v2/vocab.json"
+        model_path = "/home/mlab/.local/share/tts/tts_models--multilingual--multi-dataset--xtts_v2/model.pth"
+        config_path = "/home/mlab/.local/share/tts/tts_models--multilingual--multi-dataset--xtts_v2/config.json"
+        vocab_path = "/home/mlab/.local/share/tts/tts_models--multilingual--multi-dataset--xtts_v2/vocab.json"
         config.load_json(config_path)
 
         self._model: Xtts = Xtts.init_from_config(config)
