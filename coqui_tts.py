@@ -77,9 +77,9 @@ class CoquiTTS(tts.TTS):
         # model_storage_path = os.getenv['MODEL_STORAGE_PATH']
 
         config = XttsConfig()
-        model_path = "/home/mlab/.local/share/tts/tts_models--multilingual--multi-dataset--xtts_v2/model.pth"
-        config_path = "/home/mlab/.local/share/tts/tts_models--multilingual--multi-dataset--xtts_v2/config.json"
-        vocab_path = "/home/mlab/.local/share/tts/tts_models--multilingual--multi-dataset--xtts_v2/vocab.json"
+        model_path = "/Users/user/Library/Application Support/tts/tts_models--multilingual--multi-dataset--xtts_v2/model.pth"
+        config_path = "/Users/user/Library/Application Support/tts_models--multilingual--multi-dataset--xtts_v2/config.json"
+        vocab_path = "/Users/user/Library/Application Support/tts_models--multilingual--multi-dataset--xtts_v2/vocab.json"
         config.load_json(config_path)
 
         self._model: Xtts = Xtts.init_from_config(config)
@@ -163,7 +163,7 @@ class ChunkedStream(tts.ChunkedStream):
 
         try:
             gpt_cond_latent, speaker_embedding = self._model.get_conditioning_latents(
-                audio_path=["audio.mp3"]
+                audio_path=["output.wav"]
             )
             for i,chunk in enumerate(self._model.inference_stream(
                 self._input_text,
@@ -229,7 +229,7 @@ class SynthesizeStream(tts.SynthesizeStream):
         try:
             text_stream = await self._create_text_stream()
             gpt_cond_latent, speaker_embedding = self._model.get_conditioning_latents(
-                audio_path=["audio.mp3"]
+                audio_path=["output.wav"]
             )
             async for text in text_stream:
                 for chunk in self._model.inference_stream(
