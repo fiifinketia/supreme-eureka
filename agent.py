@@ -39,9 +39,9 @@ async def entrypoint(ctx: JobContext):
     # https://docs.livekit.io/agents/plugins
     agent = VoicePipelineAgent(
         vad=ctx.proc.userdata["vad"],
-        stt=WizperSTT(device="cuda"),
+        stt=deepgram.STT(),
         llm=LLM(),
-        tts=CoquiTTS(),
+        tts=deepgram.TTS(),
     )
 
     agent.start(ctx.room, participant)
