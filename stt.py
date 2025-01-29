@@ -27,10 +27,11 @@ class _STTOptions:
 
 
 class WizperSTT(stt.STT):
+
     def __init__(
         self,
         *,
-        model: str = "openai/whisper-tiny",
+        model: str = "openai/whisper-medium",
         language: Optional[str] = "en",
         task: Optional[str] = "transcribe",
         chunk_level: Optional[str] = "segment",
