@@ -56,7 +56,6 @@ class WizperSTT(stt.STT):
 
         self._processor = AutoProcessor.from_pretrained(model)
 
-
     def update_options(self, *, language: Optional[str] = None) -> None:
         self._opts.language = language or self._opts.language
 
@@ -92,8 +91,6 @@ class WizperSTT(stt.STT):
     async def _run_sst(
         self,
         buffer: AudioBuffer,
-        torch_dtype: torch.dtype = torch.float32,
-        device: str = "cpu",
     ):
 
         pipe = pipeline(
@@ -106,7 +103,7 @@ class WizperSTT(stt.STT):
         )
 
         text  = pipe(np.frombuffer(buffer.to_wav_bytes(), dtype=np.int16))['text']
-        text = "This is a test speech recognition"
+        # text = "This is a test speech recognition"
         print("stt %s" % text)
 
         return text

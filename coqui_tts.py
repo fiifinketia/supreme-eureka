@@ -3,6 +3,7 @@ from __future__ import annotations
 import asyncio
 import os
 import weakref
+import torch
 from dataclasses import dataclass, fields
 
 from livekit import rtc
@@ -67,8 +68,6 @@ class CoquiTTS(tts.TTS):
             num_channels=1,
         )
 
-
-
         self._opts = _Options(
             model=model,
             word_tokenizer=word_tokenizer,
@@ -83,6 +82,8 @@ class CoquiTTS(tts.TTS):
 
         self._model: Xtts = Xtts.init_from_config(config)
         self._model.load_checkpoint(config, vocab_path=vocab_path, checkpoint_path=model_path, eval=True, use_deepspeed=False)
+        if torch.cuda.is_available():
+            self._model.cuda()
 
         self._streams = weakref.WeakSet[SynthesizeStream]()
         self._language = language
@@ -104,7 +105,6 @@ class CoquiTTS(tts.TTS):
         if language is not None:
             updates["language"] = language
         tts_kwargs = {k: v for k, v in kwargs.items()}
-
 
         if model is not None:
             self._opts.model = model
@@ -271,4 +271,3 @@ class SynthesizeStream(tts.SynthesizeStream):
                     yield word.token
 
         return text_stream()
-

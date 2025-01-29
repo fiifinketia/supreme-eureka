@@ -39,7 +39,7 @@ async def entrypoint(ctx: JobContext):
     # https://docs.livekit.io/agents/plugins
     agent = VoicePipelineAgent(
         vad=ctx.proc.userdata["vad"],
-        stt=WizperSTT(),
+        stt=WizperSTT(device="cuda"),
         llm=LLM(),
         tts=CoquiTTS(),
     )
