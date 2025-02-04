@@ -22,7 +22,7 @@ sample_rate: 22050
 n_mel_channels: 80
 n_window_size: 1024
 n_window_stride: 256
-n_fft: 1024
+n_fft: 2048
 lowfreq: 0
 highfreq: null
 window: hann
